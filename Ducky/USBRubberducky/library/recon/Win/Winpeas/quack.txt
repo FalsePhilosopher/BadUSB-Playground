@@ -1,0 +1,4 @@
+REM FalsePhilosopher
+REM WIP
+REM Target Win
+REM insert PS to download and run bat or exe

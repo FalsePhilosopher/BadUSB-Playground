@@ -3,7 +3,7 @@ REM Author: FalsePhilosopher
 REM Target:  Unix-like tested on kubuntu 22.04
 REM Props: Hak5, the community and memes
 REM Version: 1.0
-REM Category: Recon
+REM Category: Prank
 REM Launches terminal, launches 250 xeyes in the BG and opens rockwell's somebodies watching me.
 REM
 REM initialization delay

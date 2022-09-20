@@ -1,6 +1,8 @@
-# Writing duckyScript
+### DTK_Downloader
 
-Can't get the DTK(ducktoolkit user script https://ducktoolkit.com/userscripts) downloader in ducky to work, maybe it's cuz i'm running powershell for linux.
+The DTK(ducktoolkit user script https://ducktoolkit.com/userscripts) downloader doesn't work. So if you get it to work send in a PR and I will add the resulting dump here.
+
+# Writing duckyScript
 
 https://github.com/dekuNukem/duckyPad
 

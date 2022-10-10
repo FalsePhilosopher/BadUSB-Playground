@@ -1,5 +1,0 @@
-REM FalsePhilosopher
-REM WIP
-REM Target Win
-REM insert PS to download and run bat or exe
-REM insert PS to save output and efil

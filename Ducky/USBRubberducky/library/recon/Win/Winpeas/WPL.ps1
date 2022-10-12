@@ -1,5 +1,3 @@
-$DropBoxAccessToken = "YOUR-DROPBOX-ACCESS-TOKEN"
-
 # MAKE LOOT FOLDER
 $FileName = "$env:USERNAME-$(get-date -f yyyy-MM-dd_hh-mm)_computer_recon.txt"
 

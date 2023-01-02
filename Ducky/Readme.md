@@ -530,6 +530,20 @@ VID and PID are hex codes and are mandatory, Manufacturer and Product are text s
 
 -----
 
-## DTK_Downloader
+## DTK user script downloader
 https://github.com/cribb-it/DTKDownloader
-The DTK(ducktoolkit user script https://ducktoolkit.com/userscripts) downloader doesn't work. So if you get it to work send in a PR and I will add the resulting dump here.
+The DTK(ducktoolkit user script https://ducktoolkit.com/userscripts) downloader doesn't work for me. So if you get it to work send in a PR and I will add the resulting dump here.
+
+-----
+
+# Helpful hints
+
+Here are a bunch of cheatsheets for use in building your scripts [here](https://github.com/FalsePhilosopher/BadUSB-Playground/tree/main/Misc/Cheat_Sheets)
+
+Shorten your payloads as much as possible by stringing multiple commands together with variables like `&&` and `;;`, read more into each OS/shell you are targeting and how to achieve this.
+
+RTFM for CMD
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cmd
+
+RTFM for powershell
+https://learn.microsoft.com/en-us/powershell/scripting/learn/ps101/04-pipelines?view=powershell-7.3

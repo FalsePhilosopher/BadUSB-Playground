@@ -1,4 +1,4 @@
- 
-[submodule "BadUSB-Playground/Ducky/USBRubberducky/mobile/iOS"]
+ [submodule "BadUSB-Playground/Ducky/USBRubberducky/mobile/iOS"]
 	path = BadUSB-Playground/Ducky/USBRubberducky/mobile/iOS
+
 	url = https://github.com/Peaakss/iOS-Payloads

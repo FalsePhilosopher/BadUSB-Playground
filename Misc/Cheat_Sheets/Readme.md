@@ -50,7 +50,9 @@ https://github.com/0xn3va/cheat-sheets (Application security)
 
 https://github.com/OWASP/CheatSheetSeries (OWASP)
 
-https://github.com/payloadbox/command-injection-payload-listhttps://github.com/ihebski/DefaultCreds-cheat-sheet
+https://github.com/payloadbox/command-injection-payload-list
+
+https://github.com/ihebski/DefaultCreds-cheat-sheet
 
 https://github.com/cipher387/Dorks-collections-list
 

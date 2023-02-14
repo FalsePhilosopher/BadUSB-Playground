@@ -4,7 +4,7 @@ https://github.com/Integration-IT/Active-Directory-Exploitation-Cheat-Sheet
 
 https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet
 
-https://github.com/LeCoupa/awesome-cheatsheets(Everything)
+https://github.com/LeCoupa/awesome-cheatsheets (Everything)
 
 https://github.com/myugan/awesome-cicd-security
 
@@ -42,13 +42,13 @@ https://github.com/onceupon/Bash-Oneliner
 
 https://github.com/minimaxir/big-list-of-naughty-strings
 
-https://github.com/cheat/cheatsheets(Everything CLI)
+https://github.com/cheat/cheatsheets (Everything CLI)
 
-https://github.com/chubin/cheat.sh(Everything CLI)
+https://github.com/chubin/cheat.sh (Everything CLI)
 
-https://github.com/0xn3va/cheat-sheets(Application security)
+https://github.com/0xn3va/cheat-sheets (Application security)
 
-https://github.com/OWASP/CheatSheetSeries(OWASP)
+https://github.com/OWASP/CheatSheetSeries (OWASP)
 
 https://github.com/payloadbox/command-injection-payload-listhttps://github.com/ihebski/DefaultCreds-cheat-sheet
 
@@ -64,7 +64,7 @@ https://github.com/carlospolop/hacktricks
 
 https://github.com/JonnyBanana/Huge-Collection-of-CheatSheet
 
-https://github.com/tarahmarie/investigations/blob/main/playbook.md(Cyber investigation playbook)
+https://github.com/tarahmarie/investigations/blob/main/playbook.md (Cyber investigation playbook)
 
 https://github.com/ivan-sincek/ios-penetration-testing-cheat-sheet
 

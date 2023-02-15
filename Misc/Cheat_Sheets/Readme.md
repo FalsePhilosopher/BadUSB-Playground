@@ -1,5 +1,7 @@
 # Cheat sheets
 
+If you want to clone all of these locally I have a repo with all of them as submodules and you can clone them all with `git clone --recursive --jobs 8 https://github.com/FalsePhilosopher/Infosec-Cheatsheets`
+
 https://github.com/Integration-IT/Active-Directory-Exploitation-Cheat-Sheet
 
 https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet

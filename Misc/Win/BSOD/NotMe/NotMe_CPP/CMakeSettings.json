@@ -1,0 +1,28 @@
+﻿{
+  "configurations": [
+    {
+      "name": "Debug-x86",
+      "generator": "Visual Studio 17 2022",
+      "configurationType": "Debug",
+      "inheritEnvironments": [
+        "msvc_x86"
+      ],
+      "buildRoot": "${projectDir}\\out\\vs\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "",
+      "ctestCommandArgs": ""
+    },
+    {
+      "name": "Release-x86",
+      "generator": "Visual Studio 17 2022",
+      "configurationType": "MinSizeRel",
+      "buildRoot": "${projectDir}\\out\\vs\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "ctestCommandArgs": "",
+      "inheritEnvironments": [
+        "msvc_x86"
+      ],
+      "intelliSenseMode": "windows-msvc-x86"
+    }
+  ]
+}

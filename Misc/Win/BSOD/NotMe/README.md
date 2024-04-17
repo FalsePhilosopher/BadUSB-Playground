@@ -1,5 +1,7 @@
 # NotMe
 
+Link to original repo by lzcapp https://github.com/lzcapp/NotMe-BSOD
+
 **:warning: SOLELY FOR SECURITY RESEARCH PURPOSES. DO NOT USE THIS REPO FOR ILLEGAL PURPOSES. :warning:**
 
 The name "**NotMe**" is inspired by the Microsoft tool "**NotMyFault**", also a tool that can cause BSOD (Blue Screen of Death) on Windows system.

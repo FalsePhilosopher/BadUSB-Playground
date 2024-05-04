@@ -1,3 +1,0 @@
-#!/bin/bash
-#This configuration file is used to set default variables
-DUCKY_LANG us

@@ -19,8 +19,12 @@ jobs:
       id: date
       run: echo "date=$(date +'%Y-%m-%d')" >> "$GITHUB_OUTPUT"
 
-    - name: Install zstd/rsync
-      run: sudo apt-get update && sudo apt-get install -y zstd rsync
+    - name: Install zeekstd
+      run: |
+        git clone https://github.com/rorosen/zeekstd.git
+        cd zeekstd
+        cargo build -p zeekstd_cli --release
+        sudo cp ./target/release/zeekstd /usr/local/bin/
 
     - name: Create a temporary directory for snapshot
       run: |
@@ -28,21 +32,21 @@ jobs:
         rsync -av --exclude='.git' --exclude='.gitmodules' --exclude='.github' ./ /tmp/snapshot/
         rm -rf *
 
-    - name: Create tar.zst snapshot
+    - name: Create tzst snapshot
       run: |
         cd /tmp/snapshot
-        tar -I 'zstd -T0 -19' -cvf "$GITHUB_WORKSPACE/BadUSB-Playground-${{ steps.date.outputs.date }}.tar.zst" *
+        tar -I 'zeekstd -l 19' -cvf "$GITHUB_WORKSPACE/BadUSB-Playground-${{ steps.date.outputs.date }}.tzst" *
         
     - name: Upload snapshot artifact
       uses: actions/upload-artifact@v4
       with:
         name: snapshot
-        path: BadUSB-Playground-${{ steps.date.outputs.date }}.tar.zst
+        path: BadUSB-Playground-${{ steps.date.outputs.date }}.tzst
 
     - name: Check if archive > 2GB and split if needed
       id: check_size
       run: |
-        file="BadUSB-Playground-${{ steps.date.outputs.date }}.tar.zst"
+        file="BadUSB-Playground-${{ steps.date.outputs.date }}.tzst"
         max_size=$((2 * 1024 * 1024 * 1024))  # 2GB in bytes
         actual_size=$(stat -c%s "$file")
         if [ "$actual_size" -ge "$max_size" ]; then
@@ -60,6 +64,6 @@ jobs:
         body: |
           Automated snapshot for ${{ steps.date.outputs.date }}.
         files: |
-          ${{ steps.check_size.outputs.split == 'true' && format('BadUSB-Playground-{0}.tar.zst.*', steps.date.outputs.date) || format('BadUSB-Playground-{0}.tar.zst', steps.date.outputs.date) }}
+          ${{ steps.check_size.outputs.split == 'true' && format('BadUSB-Playground-{0}.tzst.*', steps.date.outputs.date) || format('BadUSB-Playground-{0}.tzst', steps.date.outputs.date) }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

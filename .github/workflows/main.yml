@@ -5,6 +5,9 @@ on:
   schedule:
     - cron: '0 0 1 * *'  # Runs at 00:00 UTC on the 1st of every month
 
+env:
+  repo: BadUSB-Playground
+
 jobs:
   snapshot:
     runs-on: ubuntu-latest
@@ -35,18 +38,18 @@ jobs:
     - name: Create tzst snapshot
       run: |
         cd /tmp/snapshot
-        tar -I 'zeekstd -l 19' -cvf "$GITHUB_WORKSPACE/BadUSB-Playground-${{ steps.date.outputs.date }}.tzst" *
+        tar -I 'zeekstd -l 19' -cvf "$GITHUB_WORKSPACE/${{ env.repo }}-${{ steps.date.outputs.date }}.tzst" *
         
     - name: Upload snapshot artifact
       uses: actions/upload-artifact@v4
       with:
         name: snapshot
-        path: BadUSB-Playground-${{ steps.date.outputs.date }}.tzst
+        path: ${{ env.repo }}-${{ steps.date.outputs.date }}.tzst
 
     - name: Check if archive > 2GB and split if needed
       id: check_size
       run: |
-        file="BadUSB-Playground-${{ steps.date.outputs.date }}.tzst"
+        file="${{ env.repo }}-${{ steps.date.outputs.date }}.tzst"
         max_size=$((2 * 1024 * 1024 * 1024))  # 2GB in bytes
         actual_size=$(stat -c%s "$file")
         if [ "$actual_size" -ge "$max_size" ]; then
@@ -63,7 +66,13 @@ jobs:
         tag_name: "Snapshot-${{ steps.date.outputs.date }}"
         body: |
           Automated snapshot for ${{ steps.date.outputs.date }}.
+          ```
+          gh release download -p '${{ env.repo }}-*.tzst.*' -R FalsePhilosopher/${{ env.repo }}
+          cat ${{ env.repo }}-*.tzst.* > ${{ env.repo }}.tzst
+          rm ${{ env.repo }}-*.tzst.*
+          ratarmount ${{ env.repo }}.tzst
+          ```
         files: |
-          ${{ steps.check_size.outputs.split == 'true' && format('BadUSB-Playground-{0}.tzst.*', steps.date.outputs.date) || format('BadUSB-Playground-{0}.tzst', steps.date.outputs.date) }}
+          ${{ steps.check_size.outputs.split == 'true' && format('{0}-{1}.tzst.*', env.repo, steps.date.outputs.date) || format('{0}-{1}.tzst', env.repo, steps.date.outputs.date) }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

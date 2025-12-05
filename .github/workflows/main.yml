@@ -45,16 +45,35 @@ jobs:
       id: check_size
       run: |
         filename="${{ env.repo }}-${{ steps.date.outputs.date }}.tzst"
-        max_size=$((2 * 1024 * 1024 * 1024))  # 2GB in bytes
+        max_size=$((2 * 1024 * 1024 * 1024))
         actual_size=$(stat -c%s "$filename")
+
         if [ "$actual_size" -ge "$max_size" ]; then
           split -b 1996M "$filename" "${filename}."
           rm "$filename"
-          echo "split=true" >> "$GITHUB_OUTPUT"
           echo "pattern=${filename}.*" >> "$GITHUB_OUTPUT"
+          {
+            echo 'body<<EOF'
+            echo 'Automated snapshot for ${{ steps.date.outputs.date }}.'
+            echo '```'
+            echo "gh release download -p '${filename}.*' -R ${{ env.user }}/${{ env.repo }}"
+            echo "cat ${filename}.* > \"${filename}\""
+            echo "rm ${filename}.*"
+            echo "ratarmount \"${filename}\""
+            echo '```'
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
         else
-          echo "split=false" >> "$GITHUB_OUTPUT"
           echo "pattern=${filename}" >> "$GITHUB_OUTPUT"
+          {
+            echo 'body<<EOF'
+            echo 'Automated snapshot for ${{ steps.date.outputs.date }}.'
+            echo '```'
+            echo "gh release download -p '${filename}' -R ${{ env.user }}/${{ env.repo }}"
+            echo "ratarmount \"${filename}\""
+            echo '```'
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
         fi
 
     - name: Create GitHub Release
@@ -62,16 +81,7 @@ jobs:
       with:
         name: "Snapshot ${{ steps.date.outputs.date }}"
         tag_name: "Snapshot-${{ steps.date.outputs.date }}"
-        # We dynamically generate the instructions based on whether it was split
-        body: |
-          Automated snapshot for ${{ steps.date.outputs.date }}.
-          ```
-          gh release download -p '${{ steps.check_size.outputs.pattern }}' -R ${{ env.user }}/${{ env.repo }}
-          arc="${{ env.repo }}-${{ steps.date.outputs.date }}.tzst"
-          ${{ steps.check_size.outputs.split == 'true' && 'cat $arc.* > "$arc"' || '' }}
-          ${{ steps.check_size.outputs.split == 'true' && 'rm $arc.*' || '' }}
-          ratarmount "$arc"
-          ```
+        body: ${{ steps.check_size.outputs.body }}
         files: ${{ steps.check_size.outputs.pattern }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

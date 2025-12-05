@@ -44,14 +44,17 @@ jobs:
     - name: Check if archive > 2GB and split if needed
       id: check_size
       run: |
-        file="${{ env.repo }}-${{ steps.date.outputs.date }}.tzst"
+        filename="${{ env.repo }}-${{ steps.date.outputs.date }}.tzst"
         max_size=$((2 * 1024 * 1024 * 1024))  # 2GB in bytes
-        actual_size=$(stat -c%s "$file")
+        actual_size=$(stat -c%s "$filename")
         if [ "$actual_size" -ge "$max_size" ]; then
-          split -b 1996M "$file" "${file}."
+          split -b 1996M "$filename" "${filename}."
+          rm "$filename"
           echo "split=true" >> "$GITHUB_OUTPUT"
+          echo "pattern=${filename}.*" >> "$GITHUB_OUTPUT"
         else
           echo "split=false" >> "$GITHUB_OUTPUT"
+          echo "pattern=${filename}" >> "$GITHUB_OUTPUT"
         fi
 
     - name: Create GitHub Release
@@ -59,16 +62,16 @@ jobs:
       with:
         name: "Snapshot ${{ steps.date.outputs.date }}"
         tag_name: "Snapshot-${{ steps.date.outputs.date }}"
+        # We dynamically generate the instructions based on whether it was split
         body: |
           Automated snapshot for ${{ steps.date.outputs.date }}.
           ```
-          gh release download -p '${{ env.repo }}-*.tzst.*' -R ${{ env.user }}/${{ env.repo }}
-          arc=$(ls ${{ env.repo }}-*.tzst.* | head -n 1 | sed 's/\.[^.]*$//')
-          cat ${{ env.repo }}-*.tzst.* > "$arc"
-          rm ${{ env.repo }}-*.tzst.*
+          gh release download -p '${{ steps.check_size.outputs.pattern }}' -R ${{ env.user }}/${{ env.repo }}
+          arc="${{ env.repo }}-${{ steps.date.outputs.date }}.tzst"
+          ${{ steps.check_size.outputs.split == 'true' && 'cat $arc.* > "$arc"' || '' }}
+          ${{ steps.check_size.outputs.split == 'true' && 'rm $arc.*' || '' }}
           ratarmount "$arc"
           ```
-        files: |
-          ${{ steps.check_size.outputs.split == 'true' && format('{0}-{1}.tzst.*', env.repo, steps.date.outputs.date) || format('{0}-{1}.tzst', env.repo, steps.date.outputs.date) }}
+        files: ${{ steps.check_size.outputs.pattern }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
